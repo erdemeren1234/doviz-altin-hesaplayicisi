@@ -6,7 +6,7 @@
   <!-- <div>pos: {{ x }}, {{ y }}</div> -->
   
   <h1>{{ msg }}</h1>
-  <div ref="content">benim adım elvan dalton</div>
+  <div ref="content">Click and see the message on console</div>
 
   <NuxtPage />
 </template>
@@ -15,7 +15,7 @@
 import "@formkit/themes/genesis";
 
 const content = ref<HTMLDivElement>();
-const msg = ref("erdem");
+const msg = ref("hidden");
 
 // const { x, y } = useMouse();
 
@@ -25,7 +25,7 @@ onMounted(() => {
   useEventListener(document, "visibilitychange", (e) => {
     console.log("document.visibilityState => ", document.visibilityState);
     if (document.visibilityState === "visible") {
-      msg.value = "beyza";
+      msg.value = "visible";
     }
   });
   useEventListener(content, "click", (e) => {
