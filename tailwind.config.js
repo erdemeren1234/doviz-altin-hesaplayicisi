@@ -16,6 +16,7 @@ module.exports = {
         "body-light-bg": "#ECE5C7",
         "section-light-bg": "#C2DED1",
       },
+      
     },
   },
   plugins: [formKitTailwind],

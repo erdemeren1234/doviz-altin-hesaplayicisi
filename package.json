@@ -17,14 +17,13 @@
     "tailwindcss": "^3.2.4"
   },
   "dependencies": {
-    "@formkit/nuxt": "^1.0.0-beta.12",
-    "@formkit/themes": "^1.0.0-beta.12",
-    "@nozomuikuta/h3-cors": "^0.2.0",
+    "@formkit/auto-animate": "^1.0.0-beta.6",
+    "@formkit/nuxt": "^1.0.0-beta.15",
+    "@formkit/themes": "^1.0.0-beta.16-18186fe",
+    "@nuxtjs/google-fonts": "^3.0.0-1",
     "@pinia/nuxt": "^0.4.6",
-    "cache-manager": "^5.1.4",
-    "limiter": "^2.1.0",
-    "node-cache": "^5.1.2",
-    "nuxt-security": "^0.10.1",
-    "pinia": "^2.0.29"
+    "nuxt-security": "^0.10.2",
+    "pinia": "^2.0.29",
+    "zod": "^3.20.6"
   }
 }

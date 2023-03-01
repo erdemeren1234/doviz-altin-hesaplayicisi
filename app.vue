@@ -4,15 +4,14 @@
   </Head>
   <!-- <audio controls src="https://mdn.github.io/webaudio-examples/audio-basics/outfoxing.mp3"></audio> -->  
   <!-- <div>pos: {{ x }}, {{ y }}</div> -->
-  
+<!--   
   <h1>{{ msg }}</h1>
-  <div ref="content">Click and see the message on console</div>
+  <div ref="content">Click and see the message on console</div> -->
 
   <NuxtPage />
 </template>
 
 <script lang="ts" setup>
-import "@formkit/themes/genesis";
 
 const content = ref<HTMLDivElement>();
 const msg = ref("hidden");

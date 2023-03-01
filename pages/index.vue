@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import usePreferences from "~~/storage/preferences";
+import { fetchDataByKey } from "~~/services/marketsDataApiService";
+import { formDataType } from "~~/types/types";
 
-const { formSelectValues } = usePreferences();
+const markets = await fetchDataByKey("/data", ["USD"]);
 
-const CurrentInvestmentData = defineAsyncComponent({
-  loader: () => import("~~/components/currentInvestmentData.vue"),
+const CurrentMarketsData = defineAsyncComponent({
+  loader: () => import("~~/components/currentMarketsData.vue"),
   loadingComponent: () => import("~~/components/loading.vue"),
-  
 });
 
-const form = ref<object>();
-
-async function login(formData) {
+function handleFormSubmit(formData: formDataType) {
   console.log(formData);
 }
 
@@ -23,38 +21,11 @@ definePageMeta({
 <template>
   <main class="mt-6 mx-auto w-[95dvw] grid grid-cols-2 gap-4">
     <section class="form-inputs p-2 bg-section-light-bg">
-      <h2>Form Inputs</h2>
-
-      <FormKit type="form" submit-label="Login" method="post" @submit="login">
-        <FormKit type="group" v-model="form">
-          <FormKit
-            type="select"
-            label="Hesaplamak istediğiniz para veya emtia birimini seçiniz."
-            name="invesmentUnit"
-          >
-            <optgroup v-for="{ label, options } in formSelectValues" :label="label">
-              <option v-for="{ value, text } in options" :value="value">{{ text }}</option>
-            </optgroup>
-            <!-- <optgroup label="Yerli">
-              <option value="TRY">Türk Lirası</option>
-            </optgroup>
-            <optgroup label="Döviz">
-              <option value="USD">USD</option>
-              <option value="EUR">EUR</option>
-            </optgroup>
-            <optgroup label="Altın">
-              <option value="jupiter">Jupiter</option>
-              <option value="saturn">Saturn</option>
-            </optgroup> -->
-          </FormKit>
-        </FormKit>
-      </FormKit>
-
-      <div>Form: {{ form }}</div>
+      <Form @formSubmit="handleFormSubmit"></Form>
     </section>
 
-    <section class="current-investment-data p-2 bg-section-light-bg">
-      <CurrentInvestmentData />
+    <section class="p-2 bg-section-light-bg">
+      <CurrentMarketsData />
     </section>
   </main>
 </template>
