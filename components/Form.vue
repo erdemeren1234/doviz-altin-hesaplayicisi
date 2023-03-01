@@ -58,7 +58,7 @@ const remove = (e) => {
           Remove
         </button>
       </FormKit>
-      <button @click="add" class="p-2 border-2 border-black text-lg">Add</button>
+      <button @click.stop.prevent="add" class="p-2 border-2 border-black text-lg">Add</button>
     </section>
   </FormKit>
 </template>
