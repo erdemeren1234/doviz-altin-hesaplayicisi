@@ -2,7 +2,7 @@
 import { useAutoAnimate } from "@formkit/auto-animate/vue";
 import { formDataType } from "~~/types/types";
 import usePreferences from "~~/storage/preferences";
-const { randomUUID } = await import('node:crypto');
+import { randomUUID } from "node:crypto";
 
 const [animate] = useAutoAnimate();
 const { formSelectValues } = usePreferences();
@@ -54,7 +54,7 @@ const remove = (e) => {
 
 <style>
 .label {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   color: rgb(14, 26, 134);
 }
 
