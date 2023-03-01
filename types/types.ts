@@ -7,18 +7,29 @@ export type formDataType = {
   };
 };
 
-export const responseZodType = z.record(z.object({}).or(z.string()));
+export const responseZodType = z.record(
+  z
+    .object({
+      Alış: z.string(),
+      Tür: z.string(),
+      Satış: z.string(),
+      Değişim: z.string(),
+    })
+    .or(z.string())
+);
 
-export type responseType = {
-  [key: string]:
-    | string
-    | {
-        Alış: string;
-        Tür: string;
-        Satış: string;
-        Değişim: string;
-      };
-};
+export type responseType = z.infer<typeof responseZodType>
+
+// export type responseType = {
+//   [key: string]:
+//     | string
+//     | {
+//         Alış: string;
+//         Tür: string;
+//         Satış: string;
+//         Değişim: string;
+//       };
+// };
 
 export type $fetchErrorDataType = {
   message: string;
