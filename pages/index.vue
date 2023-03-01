@@ -4,7 +4,8 @@ import { formDataType } from "~~/types/types";
 
 const markets = await fetchDataByKey("/data", ["USD"]);
 
-const data = ref()
+const data = ref();
+const formIsFilled = ref(false);
 
 const CurrentMarketsData = defineAsyncComponent({
   loader: () => import("~~/components/currentMarketsData.vue"),
@@ -13,11 +14,9 @@ const CurrentMarketsData = defineAsyncComponent({
 
 function handleFormSubmit(formData: formDataType) {
   console.log(formData);
-  data.value = formData
-  
+  data.value = formData;
+  formIsFilled.value = true;
 }
-
-
 
 definePageMeta({
   middleware: ["control"],
@@ -27,8 +26,10 @@ definePageMeta({
 <template>
   <main class="mt-6 mx-auto w-[95dvw] grid grid-cols-2 gap-4">
     <section class="form-inputs p-2 bg-section-light-bg">
-      <Form @formSubmit="handleFormSubmit"></Form>
-      <code>{{ data }}</code>
+      <Form v-if="!formIsFilled" @formSubmit="handleFormSubmit"></Form>
+      <Result v-if="formIsFilled"></Result>
+
+      <pre>{{ data }}</pre>
     </section>
 
     <section class="p-2 bg-section-light-bg">

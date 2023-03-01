@@ -3,16 +3,17 @@ import { useAutoAnimate } from "@formkit/auto-animate/vue";
 import { formDataType } from "~~/types/types";
 import usePreferences from "~~/storage/preferences";
 import nodeCrypto from "crypto";
+import { boolean } from "zod";
 
 const [animate] = useAutoAnimate();
 const { formSelectValues } = usePreferences();
 
 const emit = defineEmits<{
-  (e: "formSubmit", formData: formDataType): void;
+  (e: "formSubmit", formData: formDataType, formIsFilled: boolean): void;
 }>();
 
 async function submit(formData: formDataType) {
-  emit("formSubmit", formData)
+  emit("formSubmit", formData, true);
 }
 
 const random = () => (typeof window !== "undefined" ? crypto.randomUUID() : nodeCrypto.randomUUID());
@@ -57,7 +58,13 @@ const remove = (e) => {
           </optgroup>
         </FormKit>
 
-        <FormKit @keydown.enter="()=>null" type="number" name="quantity" label="Quantity" label-class="label" />
+        <FormKit
+          @keydown.enter="() => null"
+          type="number"
+          name="quantity"
+          label="Quantity"
+          label-class="label"
+        />
 
         <button
           @click.stop.prevent="remove"
@@ -76,13 +83,7 @@ const remove = (e) => {
 <style>
 .label {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-  color: rgb(14, 26, 134);
-  font-weight: 900;
+  color: rgb(6, 43, 68);
+  font-weight: 800;
 }
-
-.outer {
-  margin: 10px;
-}
-
-
 </style>
