@@ -12,7 +12,7 @@ const emit = defineEmits<{
 }>();
 
 async function submit(formData: formDataType) {
-  emit("formSubmit", formData);
+  emit("formSubmit", formData)
 }
 
 const random = () => (typeof window !== "undefined" ? crypto.randomUUID() : nodeCrypto.randomUUID());
