@@ -69,6 +69,7 @@ const remove = (e) => {
         </button>
         <button @click.stop.prevent="add" class="p-2 border-2 border-black text-lg">Add</button>
       </FormKit>
+      <button @click.stop.prevent="add" class="p-2 border-2 border-black text-lg">Add</button>
     </section>
   </FormKit>
 </template>
