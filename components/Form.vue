@@ -2,6 +2,7 @@
 import { useAutoAnimate } from "@formkit/auto-animate/vue";
 import { formDataType } from "~~/types/types";
 import usePreferences from "~~/storage/preferences";
+import nodeCrypto from "crypto"
 
 
 const [animate] = useAutoAnimate();
@@ -15,7 +16,7 @@ async function submit(formData: formDataType) {
   emit("formSubmit", formData);
 }
 
-const random = () => crypto.randomUUID();
+const random = () => typeof window !== 'undefined' ? window.crypto.randomUUID() : nodeCrypto.randomUUID();
 
 let inputs = ref([random()]);
 
