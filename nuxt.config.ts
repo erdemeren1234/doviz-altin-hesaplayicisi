@@ -12,6 +12,7 @@ export default defineNuxtConfig({
           Roboto: true,
           "Josefin+Sans": true,
           Lato: [400, 700],
+          "Tilt+Neon": true,
           Raleway: {
             wght: [100, 400],
             ital: [100],

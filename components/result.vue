@@ -1,9 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="m-6 text-4xl font-bold text-sky-700 text-center" >
+  <div class="m-6 text-6xl font-bold text-center text-[#161F30] font-['Tilt_Neon']" >
     
-    Bu sayfa düzenlenecek
+    Burası düzenlenecek
   </div>
 </template>
 
