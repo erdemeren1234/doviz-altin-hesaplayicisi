@@ -28,7 +28,7 @@ definePageMeta({
   <main class="mt-6 mx-auto w-[95dvw] grid grid-cols-2 gap-4">
     <section class="form-inputs p-2 bg-section-light-bg">
       <Form @formSubmit="handleFormSubmit"></Form>
-      <div>{{ data }}</div>
+      <code>{{ data }}</code>
     </section>
 
     <section class="p-2 bg-section-light-bg">
