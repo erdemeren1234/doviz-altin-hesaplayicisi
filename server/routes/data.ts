@@ -3,7 +3,7 @@
 
 import { $fetchErrorDataType, responseType, responseZodType } from "~~/types/types";
 
-const validityPeriod = 1000 * 60 * 60;
+const validityPeriod = 1000 * 60 * 15;
 let cachedData: object = {};
 let cacheTime = 0;
 

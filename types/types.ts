@@ -1,11 +1,16 @@
 import { z } from "zod";
 
-export type formDataType = {
-  [key: string]: {
-    marketUnit: string;
-    quantity: string;
-  };
-};
+export const formDataZodType = z.record(z.object({ marketUnit: z.string(), quantity: z.string() }));
+export type formDataType = z.infer<typeof formDataZodType>;
+
+
+export const formInputZodType = z.object({
+  marketUnit: z.string(),
+  //like 100 or 9,99
+  quantity: z.string().regex(new RegExp('\\d(,\\d+)?', 'g')),
+});
+export type formInputType = z.infer<typeof formInputZodType>;
+
 
 export const responseZodType = z.record(
   z
@@ -17,8 +22,7 @@ export const responseZodType = z.record(
     })
     .or(z.string())
 );
-
-export type responseType = z.infer<typeof responseZodType>
+export type responseType = z.infer<typeof responseZodType>;
 
 // export type responseType = {
 //   [key: string]:

@@ -11,10 +11,11 @@ export default defineNuxtConfig({
         families: {
           Roboto: true,
           "Josefin+Sans": true,
+          Lobster: true,
           Lato: [400, 700],
           "Tilt+Neon": true,
           Raleway: {
-            wght: [100, 400],
+            wght: [100, 400, 800],
             ital: [100],
           },
         },

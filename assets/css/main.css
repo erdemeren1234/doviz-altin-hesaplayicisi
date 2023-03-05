@@ -3,7 +3,19 @@
 @tailwind utilities;
 
 @layer components {
+  .button {
+    @apply my-2 mr-2 p-2 text-base;
+  }
+
   .remove {
-    @apply my-2 mr-2 p-2 text-lg bg-gray-600 text-gray-200 border-2 border-gray-600;
+    @apply button text-red-700 border-2 border-red-900;
+  }
+
+  .remove-disabled {
+    @apply button bg-gray-600 text-gray-200 border-2 border-gray-600;
+  }
+
+  .add {
+    @apply button border-2 border-black;
   }
 }

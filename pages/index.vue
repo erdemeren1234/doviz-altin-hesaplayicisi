@@ -1,22 +1,31 @@
 <script setup lang="ts">
 import { fetchDataByKey } from "~~/services/marketsDataApiService";
-import { formDataType } from "~~/types/types";
+import { formInputType } from "~~/types/types";
 
-const markets = await fetchDataByKey("/data", ["USD"]);
 
-const data = ref();
-const formIsFilled = ref(false);
+const displayData = ref();
 
-const CurrentMarketsData = defineAsyncComponent({
-  loader: () => import("~~/components/currentMarketsData.vue"),
-  loadingComponent: () => import("~~/components/loading.vue"),
-});
+const formIsFilled = ref<boolean>(false);
+const resultComponentIsReady = formIsFilled;
 
-function handleFormSubmit(formData: formDataType) {
-  console.log(formData);
-  data.value = formData;
+async function handleFormSubmit(formInputs: formInputType[]) {
+  const result = new Map();
+  
+  formInputs.map(({ marketUnit, quantity }) => {
+    result.has(marketUnit)
+    ? result.set(marketUnit, result.get(marketUnit) + parseFloat(quantity.replace(",", ".")))
+    : result.set(marketUnit, parseFloat(quantity.replace(",", ".")));
+  });
+  
+  const units = Array.from(result.keys());
+  const markets = await fetchDataByKey("/data", units);
+  displayData.value = result;
   formIsFilled.value = true;
+  console.log(markets);
+  
 }
+
+
 
 definePageMeta({
   middleware: ["control"],
@@ -24,16 +33,32 @@ definePageMeta({
 </script>
 
 <template>
-  <main class="mt-6 mx-auto w-[95dvw] grid grid-cols-2 gap-4">
+  <main class="mt-6 mx-auto w-[95dvw] grid grid-cols-2 gap-2">
     <section class="form-inputs p-2 bg-section-light-bg">
-      <Form v-if="!formIsFilled" @formSubmit="handleFormSubmit"></Form>
-      <Result v-if="formIsFilled"></Result>
+      <Suspense>
+        <template #default>
+          <Form v-if="!formIsFilled" @formSubmit="handleFormSubmit" />
+        </template>
 
-      <pre>{{ data }}</pre>
+        <template #fallback>
+          <Loading />
+        </template>
+      </Suspense>
+
+      <Result v-if="resultComponentIsReady"></Result>
+      <pre>{{ displayData }}</pre>
     </section>
 
     <section class="p-2 bg-section-light-bg">
-      <CurrentMarketsData />
+      <Suspense>
+        <template #default>
+          <CurrentMarketsData />
+        </template>
+
+        <template #fallback>
+          <Loading />
+        </template>
+      </Suspense>
     </section>
   </main>
 </template>
