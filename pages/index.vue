@@ -42,8 +42,8 @@ definePageMeta({
 </script>
 
 <template>
-  <main class="mt-6 mx-auto w-[95dvw] grid grid-cols-2 gap-2">
-    <section class="form-inputs p-2 bg-section-light-bg">
+  <main class="mt-6 mx-auto w-[95dvw] grid lg:grid-cols-2 grid-cols-1 gap-2">
+    <section class="p-2 bg-section-light-bg">
       <Form v-if="!formIsFilled" @formSubmit="handleFormSubmit" />
 
       <Loading v-if="isLoading" />

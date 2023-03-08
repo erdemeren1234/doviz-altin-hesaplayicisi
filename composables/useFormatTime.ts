@@ -1,9 +1,18 @@
+type formatTimeOptions = {
+  locale?: string;
+  dateStyle?: "full" | "long" | "medium" | "short";
+  timeStyle?: "full" | "long" | "medium" | "short";
+  timeZone?: string;
+};
+
 export const useFormatTime = (
   time: string | Date,
-  locale: string = "tr-TR",
-  dateStyle: "full" | "long" | "medium" | "short" = "medium",
-  timeStyle: "full" | "long" | "medium" | "short" = "medium",
-  timeZone: string = "Europe/Istanbul"
+  {
+    locale = "tr-TR",
+    dateStyle = "medium",
+    timeStyle = "medium",
+    timeZone = "Europe/Istanbul",
+  }: formatTimeOptions
 ) => {
   return new Intl.DateTimeFormat(locale, {
     dateStyle: dateStyle,

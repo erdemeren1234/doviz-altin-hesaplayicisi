@@ -99,11 +99,16 @@ const usePreferences = defineStore("preferences", () => {
     },
   ]);
 
-  
+  const longMarketNames = Object.fromEntries(
+    formSelectValues.value.reduce((acc: string[][], curr) => {
+      return acc.concat(curr.options.map((item) => [item.value, item.text]));
+    }, [])
+  );
 
   return {
     marketUnits,
     formSelectValues,
+    longMarketNames
   };
 });
 

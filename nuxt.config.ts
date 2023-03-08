@@ -9,7 +9,8 @@ export default defineNuxtConfig({
       "@nuxtjs/google-fonts",
       {
         families: {
-          Roboto: true,
+          Oswald: true,
+          Quicksand: true,
           "Josefin+Sans": true,
           Lobster: true,
           Lato: [400, 700],

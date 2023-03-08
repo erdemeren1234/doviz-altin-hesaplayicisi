@@ -12,7 +12,7 @@ const emit = defineEmits<{
 
 async function submit(formData: formDataType) {
   //formData = {uuid: {input},...}
-  
+
   const formInputs: formInputType[] = [];
 
   Object.values(formData).map((input: formInputType) => {
@@ -34,7 +34,6 @@ onMounted(() => {
 function add(): void {
   inputs.value.push(useRandomUUID());
 }
-
 function remove(e): void {
   const key = e.target.getAttribute("data-key");
   inputs.value = inputs.value.filter((item) => item !== key);

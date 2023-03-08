@@ -14,7 +14,10 @@ module.exports = {
     extend: {
       colors: {
         "body-light-bg": "#ECE5C7",
-        "section-light-bg": "#C2DED1",
+        //"section-light-bg": "#C5DED1",
+      },
+      backgroundImage: {
+        "section-light-bg": "linear-gradient(116deg, rgba(111,124,59,0.1) 3%, rgba(31,102,18,0.1) 40%, rgba(173,192,118,0.1) 81%)",
       },
       
     },
