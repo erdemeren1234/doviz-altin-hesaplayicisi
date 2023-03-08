@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { useAutoAnimate } from "@formkit/auto-animate/vue";
-import { formDataType, formInputZodType, formInputType } from "~~/types/types";
 import usePreferences from "~~/storage/preferences";
+
+const { useAutoAnimate } = await import("@formkit/auto-animate/vue");
+const { formDataType, formInputZodType, formInputType } = await import("~~/types/types");
 
 const [animate] = useAutoAnimate();
 const { formSelectValues } = usePreferences();
