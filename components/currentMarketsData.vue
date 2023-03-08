@@ -16,13 +16,13 @@ const twClass = "xl:text-xl m-2 text-md";
 
 <template>
   <article component-name="currentMarketsData">
-    <h2
-      class="m-2 font-['Quicksand'] font-bold 2xl:text-5xl xl:text-3xl text-2xl text-blue-700"
-      
-    >
+    <h2 class="m-2 font-['Lobster'] 2xl:text-5xl xl:text-3xl text-2xl text-orange-800 transition-all hover:text-orange-900 hover:translate-x-4">
       Current Markets Data
     </h2>
-    <div :class="twClass" class="mx-2 my-5 flex justify-end gap-2 font-['Josefin_Sans'] font-bold">
+    <div
+      :class="twClass"
+      class="w-max mx-2 my-2 flex justify-end gap-2 font-['Josefin_Sans'] font-bold text-sm underline decoration-indigo-500 transition-all hover:underline-offset-4"
+    >
       <span class="">Update Time:</span>
       <time :datetime="updateTime">{{ useFormatTime(updateTime, { dateStyle: "long" }) }}</time>
     </div>
