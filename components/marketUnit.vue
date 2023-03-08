@@ -13,12 +13,10 @@ defineProps<{
       <div class="flex justify-around">
         <span>Alış: </span> 
         <span>{{ buyPrice }}</span>
-        <span>₺</span>
       </div>
       <div class="flex justify-around">
         <span>Satış: </span> 
         <span>{{ sellPrice }}</span>
-        <span>₺</span>
       </div>
     </section>
   </article>

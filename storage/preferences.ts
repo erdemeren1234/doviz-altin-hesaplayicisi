@@ -7,16 +7,17 @@ const usePreferences = defineStore("preferences", () => {
     "USD",
     "EUR",
     "GBP",
-    "gram-altin",
-    "ceyrek-altin",
-    "yarim-altin",
-    "tam-altin",
-    "cumhuriyet-altini",
-    "ata-altin",
-    "resat-altin",
-    "18-ayar-altin",
-    "22-ayar-bilezik",
-    "gumus",
+    "GRA",
+    "CEY",
+    "YAR",
+    "TAM",
+    "CUM",
+    "ATA",
+    "RES",
+    "ODA",
+    "OSA",
+    "YIA",
+    "GUM",
   ]);
 
   //FormKit -> select -> optgroup
@@ -51,48 +52,54 @@ const usePreferences = defineStore("preferences", () => {
       label: "Emtia",
       options: [
         {
-          value: "gram-altin",
+          value: "GRA",
           text: "Gram Altın",
         },
         {
-          value: "ceyrek-altin",
+          value: "CEY",
           text: "Çeyrek Altın",
         },
         {
-          value: "yarim-altin",
+          value: "YAR",
           text: "Yarım  Altın",
         },
         {
-          value: "tam-altin",
+          value: "TAM",
           text: "Tam Altın",
         },
         {
-          value: "cumhuriyet-altini",
+          value: "CUM",
           text: "Cumhuriyet Altını",
         },
         {
-          value: "ata-altin",
+          value: "ATA",
           text: "Ata Altın",
         },
         {
-          value: "resat-altin",
+          value: "RES",
           text: "Reşat Altın",
         },
         {
-          value: "18-ayar-altin",
+          value: "ODA",
+          text: "14 Ayar Altın",
+        },
+        {
+          value: "OSA",
           text: "18 Ayar Altın",
         },
         {
-          value: "22-ayar-bilezik",
+          value: "YIA",
           text: "22 Ayar Bilezik",
         },
         {
-          value: "gumus",
+          value: "GUM",
           text: "Gümüş",
         },
       ],
     },
   ]);
+
+  
 
   return {
     marketUnits,

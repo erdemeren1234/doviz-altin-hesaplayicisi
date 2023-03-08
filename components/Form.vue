@@ -2,10 +2,8 @@
 import { useAutoAnimate } from "@formkit/auto-animate/vue";
 import { formDataType, formInputZodType, formInputType } from "~~/types/types";
 import usePreferences from "~~/storage/preferences";
-import nodeCrypto from "crypto";
 
 const [animate] = useAutoAnimate();
-
 const { formSelectValues } = usePreferences();
 
 const emit = defineEmits<{
@@ -14,29 +12,27 @@ const emit = defineEmits<{
 
 async function submit(formData: formDataType) {
   //formData = {uuid: {input},...}
-  const formInputs: formInputType[] = [];
   
+  const formInputs: formInputType[] = [];
+
   Object.values(formData).map((input: formInputType) => {
     if (formInputZodType.safeParse(input).success) {
       formInputs.push(input);
     }
   });
-  emit("formSubmit", formInputs, true);
-}
 
-function random(): string {
-  return typeof window !== "undefined" ? crypto.randomUUID() : nodeCrypto.randomUUID();
+  emit("formSubmit", formInputs, true);
 }
 
 let inputs: globalThis.Ref<string[]> = ref([]);
 
 onMounted(() => {
   //in order to prevent to pass different random uuid to inputs array and select input name
-  inputs.value.push(random());
+  inputs.value.push(useRandomUUID());
 });
 
 function add(): void {
-  inputs.value.push(random());
+  inputs.value.push(useRandomUUID());
 }
 
 function remove(e): void {

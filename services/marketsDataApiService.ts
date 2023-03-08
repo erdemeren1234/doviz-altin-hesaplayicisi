@@ -1,14 +1,12 @@
-import { $fetchErrorDataType, responseType, responseZodType } from "../types/types";
-
-export const updateDateKey: string = "Update_Date";
+import { apiType } from "../types/apiTypes";
 
 /**
  *
  * @param url
  * @returns {Promise} Returns all api data
  */
-export async function fetchAllData(url: string): Promise<responseType | $fetchErrorDataType> {
-  const dataOrError = await $fetch<responseType>(url).catch<$fetchErrorDataType>((error) => error.data);
+export async function fetchAllData(url: string) {
+  const dataOrError = await $fetch<apiType>(url);
 
   return dataOrError;
 }
@@ -19,22 +17,15 @@ export async function fetchAllData(url: string): Promise<responseType | $fetchEr
  * @param keys
  * @returns {Promise} Returns api data by given key or keys
  */
-export async function fetchDataByKey(
-  url: string,
-  keys: string[]
-): Promise<responseType | $fetchErrorDataType> {
+export async function fetchDataByKey(url: string, keys: string[]) {
   const dataOrError = await fetchAllData(url);
 
-  if (responseZodType.safeParse(dataOrError).success) {
-    const filtered: responseType = Object.fromEntries(
-      [updateDateKey, ...keys].map((key) => [key, dataOrError[key]])
-    );
-    return filtered;
-  }
+  const filtered = Object.fromEntries(
+    ["Update_Date", ...keys].map((key) => [key, dataOrError[key]])
+  ) as apiType;
 
-  //returns error
-  return dataOrError;
+  return filtered;
 }
 
-export async function getBuyPrices() {}
-export async function getSellPrices() {}
+// export async function getBuyPrices() {}
+// export async function getSellPrices() {}
