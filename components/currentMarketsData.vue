@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { fetchDataByKey } from "~~/services/marketsDataApiService";
 import usePreferences from "~~/storage/preferences";
 
+const { fetchDataByKey } = await import("~~/services/marketsDataApiService");
 const { marketUnits } = usePreferences();
 
 //Not included "TRY" in marketUnits. Filtered market units to display user agents
