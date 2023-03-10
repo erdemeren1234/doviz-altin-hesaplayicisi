@@ -11,15 +11,13 @@ const emit = defineEmits<{
 }>();
 
 async function submit(formData: formDataType) {
-  //formData = {uuid: {input},...}
-
   const formInputs: formInputType[] = [];
+
   Object.values(formData).map((input: formInputType) => {
     if (formInputZodType.safeParse(input).success) {
       formInputs.push(input);
     }
   });
-
   emit("formSubmit", formInputs, true);
 }
 
@@ -40,54 +38,51 @@ function removeInputGroup(e): void {
 </script>
 
 <template>
-  <section v-if="inputUUIDKeys.length > 0" class="">
-    <FormKit
-      type="form"
-      id="form"
-      @submit="submit"
-      :submit-attrs="{
-        inputClass: 'mx-4 p-2 bg-green-700 border-1 border-black text-xl text-white',
-      }"
-    >
-      <section ref="animate" class="m-2 p-2">
-        <FormKit v-for="UUIDKey in inputUUIDKeys" :key="UUIDKey" type="group" :name="UUIDKey">
-          <section name="inputs" class="p-4 border-2 border-[#084d45] rounded-lg">
-            <FormKit
-              type="select"
-              name="marketUnit"
-              label="Para veya emtia birimini seçiniz"
-              label-class="label"
-            >
-              <optgroup v-for="{ label, options } in formSelectValues" :label="label">
-                <option v-for="{ value, text } in options" :value="value">{{ text }}</option>
-              </optgroup>
-            </FormKit>
+  <FormKit
+    type="form"
+    @submit="submit"
+    :submit-attrs="{
+      inputClass: 'mx-4 p-2 bg-green-700 border-1 border-black text-xl text-white',
+    }"
+  >
+    <section ref="animate" class="m-2 p-2">
+      <FormKit v-for="UUIDKey in inputUUIDKeys" :key="UUIDKey" type="group" :name="UUIDKey">
+        <section name="inputs" class="p-4 border-2 border-[#084d45] rounded-lg">
+          <FormKit
+            type="select"
+            name="marketUnit"
+            label="Para veya emtia birimini seçiniz"
+            label-class="label"
+          >
+            <optgroup v-for="{ label, options } in formSelectValues" :label="label">
+              <option v-for="{ value, text } in options" :value="value">{{ text }}</option>
+            </optgroup>
+          </FormKit>
 
-            <FormKit
-              @keydown.enter.prevent=""
-              type="text"
-              name="quantity"
-              label="Quantity"
-              placeholder="Like 100 or 9,99"
-              label-class="label"
-            />
-          </section>
+          <FormKit
+            @keydown.enter.prevent=""
+            type="text"
+            name="quantity"
+            label="Quantity"
+            placeholder="Like 100 or 9,99"
+            label-class="label"
+          />
+        </section>
 
-          <section name="buttons">
-            <button
-              @click.stop.prevent="removeInputGroup"
-              :data-key="UUIDKey"
-              class="remove disabled:remove-disabled"
-              :disabled="inputUUIDKeys.length <= 1"
-            >
-              Remove
-            </button>
-            <button @click.stop.prevent="addInputGroup" class="add">Add</button>
-          </section>
-        </FormKit>
-      </section>
-    </FormKit>
-  </section>
+        <section name="buttons">
+          <button
+            @click.stop.prevent="removeInputGroup"
+            :data-key="UUIDKey"
+            class="remove disabled:remove-disabled"
+            :disabled="inputUUIDKeys.length <= 1"
+          >
+            Remove
+          </button>
+          <button @click.stop.prevent="addInputGroup" class="add">Add</button>
+        </section>
+      </FormKit>
+    </section>
+  </FormKit>
 </template>
 
 <style>
