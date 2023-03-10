@@ -3,7 +3,6 @@ import usePreferences from "~~/storage/preferences";
 import { formDataType, formInputZodType, formInputType } from "~~/types/types";
 
 const { useAutoAnimate } = await import("@formkit/auto-animate/vue");
-
 const [animate] = useAutoAnimate();
 const { formSelectValues } = usePreferences();
 
@@ -15,7 +14,6 @@ async function submit(formData: formDataType) {
   //formData = {uuid: {input},...}
 
   const formInputs: formInputType[] = [];
-
   Object.values(formData).map((input: formInputType) => {
     if (formInputZodType.safeParse(input).success) {
       formInputs.push(input);
@@ -25,33 +23,34 @@ async function submit(formData: formDataType) {
   emit("formSubmit", formInputs, true);
 }
 
-let inputs: globalThis.Ref<string[]> = ref([]);
+const inputUUIDKeys: globalThis.Ref<string[]> = ref([]);
 
 onMounted(() => {
-  //in order to prevent to pass different random uuid to inputs array and select input name
-  inputs.value.push(useRandomUUID());
+  //in order to prevent to pass different random uuid to inputUUIDKeys array and select input name
+  inputUUIDKeys.value.push(useRandomUUID());
 });
 
-function add(): void {
-  inputs.value.push(useRandomUUID());
+function addInputGroup(): void {
+  inputUUIDKeys.value.push(useRandomUUID());
 }
-function remove(e): void {
+function removeInputGroup(e): void {
   const key = e.target.getAttribute("data-key");
-  inputs.value = inputs.value.filter((item) => item !== key);
+  inputUUIDKeys.value = inputUUIDKeys.value.filter((item) => item !== key);
 }
 </script>
 
 <template>
-  <section v-if="inputs.length > 0" class="">
+  <section v-if="inputUUIDKeys.length > 0" class="">
     <FormKit
       type="form"
+      id="form"
       @submit="submit"
       :submit-attrs="{
         inputClass: 'mx-4 p-2 bg-green-700 border-1 border-black text-xl text-white',
       }"
     >
       <section ref="animate" class="m-2 p-2">
-        <FormKit v-for="input in inputs" :key="input" type="group" :name="input">
+        <FormKit v-for="UUIDKey in inputUUIDKeys" :key="UUIDKey" type="group" :name="UUIDKey">
           <section name="inputs" class="p-4 border-2 border-[#084d45] rounded-lg">
             <FormKit
               type="select"
@@ -76,14 +75,14 @@ function remove(e): void {
 
           <section name="buttons">
             <button
-              @click.stop.prevent="remove"
-              :data-key="input"
+              @click.stop.prevent="removeInputGroup"
+              :data-key="UUIDKey"
               class="remove disabled:remove-disabled"
-              :disabled="inputs.length <= 1"
+              :disabled="inputUUIDKeys.length <= 1"
             >
               Remove
             </button>
-            <button @click.stop.prevent="add" class="add">Add</button>
+            <button @click.stop.prevent="addInputGroup" class="add">Add</button>
           </section>
         </FormKit>
       </section>

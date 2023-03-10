@@ -1,39 +1,28 @@
 <script setup lang="ts">
 import { fetchDataByKey } from "~~/services/marketsDataApiService";
 import { formInputType } from "~~/types/types";
+import useStates from "~~/storage/states";
 
-const displayData = ref();
-const sumData = ref();
-
-const formIsFilled = ref<boolean>(false);
-const isLoading = ref<boolean>(false);
-const resultComponentIsReady = ref<boolean>(false);
+const { getResult, addToSum } = useStates();
 
 async function handleFormSubmit(formInputs: formInputType[]) {
-  const result = new Map();
-  formIsFilled.value = true;
-  isLoading.value = true;
-
   formInputs.map(({ marketUnit, quantity }) => {
-    result.has(marketUnit)
-      ? result.set(marketUnit, result.get(marketUnit) + parseFloat(quantity.replace(",", ".")))
-      : result.set(marketUnit, parseFloat(quantity.replace(",", ".")));
+    getResult.has(marketUnit)
+      ? getResult.set(marketUnit, getResult.get(marketUnit) + parseFloat(quantity.replace(",", ".")))
+      : getResult.set(marketUnit, parseFloat(quantity.replace(",", ".")));
   });
 
-  const units = Array.from(result.keys());
+  const units: string[] = Array.from(getResult.keys());
   const markets = await fetchDataByKey("/data", units);
-  console.log("markets", markets);
 
-  const sum: number = units
-    .reduce((acc, unit) => acc + parseFloat(markets[unit].Selling) * result.get(unit), 0)
-    .toFixed(2);
+  addToSum(
+    units.reduce(
+      (acc: number, unit: string): number => acc + parseFloat(markets[unit].Selling) * getResult.get(unit),
+      0
+    )
+  );
 
-  await new Promise((res) => setTimeout(res, 1000));
-  isLoading.value = false;
-  resultComponentIsReady.value = true;
-
-  displayData.value = result;
-  sumData.value = useTransformToTRY(sum);
+  navigateTo("/result");
 }
 
 definePageMeta({
@@ -42,29 +31,17 @@ definePageMeta({
 </script>
 
 <template>
-  <main class="mt-6 mx-auto w-[95dvw] grid lg:grid-cols-2 grid-cols-1 gap-2">
-    <section class="p-2 bg-section-light-bg">
-      <Form v-if="!formIsFilled" @formSubmit="handleFormSubmit" />
+  <section page-name="index">
+    <NuxtLink to="/result">result</NuxtLink>
 
-      <Loading v-if="isLoading" />
+    <Suspense>
+      <Form @formSubmit="handleFormSubmit" />
 
-      <Result v-if="resultComponentIsReady" />
-      <pre>{{ displayData }}</pre>
-      <pre>{{ sumData }}</pre>
-    </section>
-
-    <section class="p-2 bg-section-light-bg">
-      <Suspense>
-        <template #default>
-          <CurrentMarketsData />
-        </template>
-
-        <template #fallback>
-          <Loading />
-        </template>
-      </Suspense>
-    </section>
-  </main>
+      <template #fallback>
+        <Loading />
+      </template>
+    </Suspense>
+  </section>
 </template>
 
 <style>

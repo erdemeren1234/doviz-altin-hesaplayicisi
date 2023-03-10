@@ -21,7 +21,7 @@ const twClass = "xl:text-xl m-2 text-md";
     </h2>
     <div
       :class="twClass"
-      class="w-max mx-2 my-2 flex justify-end gap-2 font-['Josefin_Sans'] font-bold text-sm underline decoration-indigo-500 transition-all hover:underline-offset-4"
+      class="w-max mx-2 my-2 flex justify-end gap-2 font-['Josefin_Sans'] font-bold text-xs underline decoration-indigo-500 transition duration-500 hover:underline-offset-4"
     >
       <span class="">Update Time:</span>
       <time :datetime="updateTime">{{ useFormatTime(updateTime, { dateStyle: "long" }) }}</time>
