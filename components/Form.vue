@@ -7,7 +7,7 @@ const [animate] = useAutoAnimate();
 const { formSelectValues } = usePreferences();
 
 const emit = defineEmits<{
-  (e: "formSubmit", formInputs: formInputType[], formIsFilled: boolean): void;
+  (e: "formSubmit"): void;
 }>();
 
 async function submit(formData: formDataType) {
@@ -18,7 +18,8 @@ async function submit(formData: formDataType) {
       formInputs.push(input);
     }
   });
-  emit("formSubmit", formInputs, true);
+  
+  useHandleFormSubmit(formInputs)
 }
 
 const inputUUIDKeys: globalThis.Ref<string[]> = ref([]);
