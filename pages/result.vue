@@ -25,7 +25,7 @@ definePageMeta({
   <section page-name="result">
     <section class="font-semibold text-xl lucidaFont" v-for="unit in getResult.keys()">
       {{ longMarketNames[unit] }} = {{ getResult.get(unit) }}
-      <span v-html="marketSymbols[unit] ?? 'Gram/Adet'"></span>
+      <span class=" text-rose-900" v-html="marketSymbols[unit] ?? 'Gram/Adet'"></span>
     </section>
 
     <pre class="text-2xl my-4 text-emerald-700 font-extrabold">Toplam: {{ useTransformToTRY(getSum) }}</pre>
