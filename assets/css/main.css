@@ -4,7 +4,7 @@
 
 @layer components {
   .button {
-    @apply my-2 mr-2 p-2 text-base;
+    @apply my-1 md:my-2 mr-2 p-1 md:p-2 text-sm lg:text-lg md:text-lg ;
   }
 
   .remove {

@@ -1,11 +1,17 @@
-<script setup>
+<script lang="ts" setup>
 import useStates from "~~/storage/states";
+import { storeToRefs } from 'pinia'
 
-const { getSum, getResult, resetResult } = useStates();
+const states = useStates()
+const { resetResult } = states;
+// in order to get states immediately, used storeToRefs()
+const { getSum, getResult } = storeToRefs(states);
 
-function resetAndNavigate() {
+const displayForm = ref<boolean>(false);
+
+function resetResultAndNavigate(path: string = '/'): void {
   resetResult();
-  navigateTo("/");
+  navigateTo(path);
 }
 
 definePageMeta({
@@ -16,11 +22,14 @@ definePageMeta({
 <template>
   <section page-name="result">
     <h1 class="font-bold text-5xl">result</h1>
+    
     <pre>{{ useTransformToTRY(getSum) }}</pre>
     <pre>{{ getResult }}</pre>
     <section id="buttons" class="my4 gap-4 grid grid-cols-1 font-bold font-['Raleway'] text-xl">
-      <button @click="navigateTo('/')">Formu doldurmaya devam et</button>
-      <button @click="resetAndNavigate">Yeni hesaplama yap</button><br />
+      <button @click="displayForm = true">Formu doldurmaya devam et</button>
+      <button @click="resetResultAndNavigate()">Yeni hesaplama yap</button>
     </section>
+
+    <Form v-if="displayForm" @onFormSubmit="displayForm = false" />
   </section>
 </template>

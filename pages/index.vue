@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-
 definePageMeta({
   middleware: [],
 });
@@ -8,10 +6,8 @@ definePageMeta({
 
 <template>
   <section page-name="index">
-    <NuxtLink to="/result">result</NuxtLink>
-
     <Suspense>
-      <Form/>
+      <Form />
 
       <template #fallback>
         <Loading />

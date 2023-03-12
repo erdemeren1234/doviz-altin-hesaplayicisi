@@ -31,4 +31,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+
+  imports: {
+    dirs: [
+      // ... or scan all modules within given directory
+      'composables/**'
+    ]
+  }
 });

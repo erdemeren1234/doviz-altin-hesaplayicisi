@@ -1,15 +1,20 @@
 <script lang="ts" setup>
 import usePreferences from "~~/storage/preferences";
 import { formDataType, formInputZodType, formInputType } from "~~/types/types";
+import useStates from "~~/storage/states";
 
 const { useAutoAnimate } = await import("@formkit/auto-animate/vue");
 const [animate] = useAutoAnimate();
 const { formSelectValues } = usePreferences();
+const { inputGroupUUIDKeys } = useStates();
 
 const emit = defineEmits<{
-  (e: "formSubmit"): void;
+  (e: "onFormSubmit"): void;
 }>();
 
+/**
+ * Submit
+ */
 async function submit(formData: formDataType) {
   const formInputs: formInputType[] = [];
 
@@ -18,24 +23,15 @@ async function submit(formData: formDataType) {
       formInputs.push(input);
     }
   });
-  
-  useHandleFormSubmit(formInputs)
-}
 
-const inputUUIDKeys: globalThis.Ref<string[]> = ref([]);
+  useHandleFormSubmit(formInputs);
+  emit("onFormSubmit");
+}
 
 onMounted(() => {
   //in order to prevent to pass different random uuid to inputUUIDKeys array and select input name
-  inputUUIDKeys.value.push(useRandomUUID());
+  useAddInputGroup(inputGroupUUIDKeys);
 });
-
-function addInputGroup(): void {
-  inputUUIDKeys.value.push(useRandomUUID());
-}
-function removeInputGroup(e): void {
-  const key = e.target.getAttribute("data-key");
-  inputUUIDKeys.value = inputUUIDKeys.value.filter((item) => item !== key);
-}
 </script>
 
 <template>
@@ -43,11 +39,11 @@ function removeInputGroup(e): void {
     type="form"
     @submit="submit"
     :submit-attrs="{
-      inputClass: 'mx-4 p-2 bg-green-700 border-1 border-black text-xl text-white',
+      inputClass: 'mx-4 p-2 bg-green-700 border-1 border-black text-sm lg:text-xl md:text-lg text-white',
     }"
   >
     <section ref="animate" class="m-2 p-2">
-      <FormKit v-for="UUIDKey in inputUUIDKeys" :key="UUIDKey" type="group" :name="UUIDKey">
+      <FormKit v-for="UUIDKey in inputGroupUUIDKeys" :key="UUIDKey" type="group" :name="UUIDKey">
         <section name="inputs" class="p-4 border-2 border-[#084d45] rounded-lg">
           <FormKit
             type="select"
@@ -72,14 +68,14 @@ function removeInputGroup(e): void {
 
         <section name="buttons">
           <button
-            @click.stop.prevent="removeInputGroup"
+            @click.stop.prevent="useRemoveInputGroup($event, inputGroupUUIDKeys)"
             :data-key="UUIDKey"
             class="remove disabled:remove-disabled"
-            :disabled="inputUUIDKeys.length <= 1"
+            :disabled="inputGroupUUIDKeys.length <= 1"
           >
             Remove
           </button>
-          <button @click.stop.prevent="addInputGroup" class="add">Add</button>
+          <button @click.stop.prevent="useAddInputGroup(inputGroupUUIDKeys)" class="add">Add</button>
         </section>
       </FormKit>
     </section>
