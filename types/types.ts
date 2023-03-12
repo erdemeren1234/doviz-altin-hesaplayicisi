@@ -10,6 +10,13 @@ export const formInputZodType = z.object({
 export type formDataType = z.infer<typeof formDataZodType>;
 export type formInputType = z.infer<typeof formInputZodType>;
 
+export type marketSymbolsType = {
+  TRY: string;
+  USD: string;
+  EUR: string;
+  GBP: string;
+};
+
 // export const $fetchErrorDataZodType = z.object({
 //   message: z.string(),
 //   stack: z.string(),

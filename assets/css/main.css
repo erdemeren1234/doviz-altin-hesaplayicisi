@@ -4,7 +4,7 @@
 
 @layer components {
   .button {
-    @apply my-1 md:my-2 mr-2 p-1 md:p-2 text-sm lg:text-lg md:text-lg ;
+    @apply my-1 mr-2 p-1 lg:p-2 text-lg lg:text-lg ;
   }
 
   .remove {
@@ -12,10 +12,26 @@
   }
 
   .remove-disabled {
-    @apply button bg-gray-600 text-gray-200 border-2 border-gray-600;
+    @apply button bg-gray-600 text-gray-200 border-2 border-gray-600 cursor-not-allowed	;
   }
 
   .add {
-    @apply button border-2 border-black;
+    @apply button border-2 border-black text-[#2e416c];
+  }
+
+  .lucidaFont {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif
+  }
+  
+  .label {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    color: rgb(6, 45, 70);
+    font-weight: 800;
+    @apply text-[.925rem] 2xl:text-lg xl:text-lg lg:text-base sm:text-sm 
+    
+  }
+
+  .inputClass {
+    @apply w-40 md:w-48 h-6 md:h-8 px-2 rounded-md lucidaFont
   }
 }

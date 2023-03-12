@@ -42,6 +42,7 @@
   </Head>
 
   <NuxtLayout>
+    
     <NuxtPage />
   </NuxtLayout>
 </template>

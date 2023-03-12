@@ -16,7 +16,7 @@ const twClass = "xl:text-xl m-2 text-md";
 
 <template>
   <article component-name="currentMarketsData">
-    <h2 class="m-2 font-['Lobster'] 2xl:text-5xl xl:text-3xl text-2xl text-orange-800 transition-all hover:text-orange-900 hover:translate-x-4">
+    <h2 class="m-2 font-['Lobster'] text-2xl 2xl:text-5xl xl:text-4xl sm:text-3xl text-orange-800 transition-all hover:text-orange-900 hover:translate-x-4">
       Current Markets Data
     </h2>
     <div

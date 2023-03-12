@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { marketSymbolsType } from "~~/types/types";
 
 const usePreferences = defineStore("preferences", () => {
   //it will be shown investment data units to user agent
@@ -105,10 +106,19 @@ const usePreferences = defineStore("preferences", () => {
     }, [])
   );
 
+  // html hex codes
+  const marketSymbols: marketSymbolsType = {
+    TRY: "&#x20BA;",
+    USD: "&#x24;",
+    EUR: "&#x20AC;",
+    GBP: "&#xa3;",
+  };
+
   return {
     marketUnits,
     formSelectValues,
-    longMarketNames
+    longMarketNames,
+    marketSymbols
   };
 });
 
