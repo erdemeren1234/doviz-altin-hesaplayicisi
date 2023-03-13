@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import useStates from "~~/storage/states";
 import usePreferences from "~~/storage/preferences";
-import { storeToRefs } from "pinia";
 
 const { marketSymbols, longMarketNames } = usePreferences();
 const states = useStates();

@@ -2,11 +2,13 @@
 import { formDataType, formInputZodType, formInputType } from "~~/types/types";
 import usePreferences from "~~/storage/preferences";
 import useStates from "~~/storage/states";
+import { storeToRefs } from "pinia";
 
 const { useAutoAnimate } = await import("@formkit/auto-animate/vue");
+const states = storeToRefs(useStates());
+const { inputGroupUUIDKeys } = states;
 const [animate] = useAutoAnimate();
 const { formSelectValues } = usePreferences();
-const { inputGroupUUIDKeys } = useStates();
 
 const emit = defineEmits<{
   (e: "onFormSubmit"): void;
@@ -30,7 +32,7 @@ async function submit(formData: formDataType) {
 
 onMounted(() => {
   //in order to prevent to pass different random uuid to inputUUIDKeys array and select input name
-  useAddInputGroup(inputGroupUUIDKeys);
+  useAddInputGroupUUID(useRandomUUID());
 });
 </script>
 
@@ -78,14 +80,14 @@ onMounted(() => {
 
           <section name="buttons">
             <button
-              @click.stop.prevent="useRemoveInputGroup($event, inputGroupUUIDKeys)"
+              @click.stop.prevent="useRemoveInputGroupUUID($event)"
               :data-key="UUIDKey"
               class="remove disabled:remove-disabled"
               :disabled="inputGroupUUIDKeys.length <= 1"
             >
               Remove
             </button>
-            <button @click.stop.prevent="useAddInputGroup(inputGroupUUIDKeys)" class="add">Add</button>
+            <button @click.stop.prevent="useAddInputGroupUUID(useRandomUUID())" class="add">Add</button>
           </section>
         </FormKit>
       </section>

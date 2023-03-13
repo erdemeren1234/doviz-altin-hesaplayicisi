@@ -1,3 +1,5 @@
+import { storeToRefs } from "pinia";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -37,5 +39,10 @@ export default defineNuxtConfig({
       // ... or scan all modules within given directory
       'composables/**'
     ]
-  }
+  },
+  pinia: {
+    autoImports: [
+      'defineStore', 'storeToRefs'
+    ],
+  },
 });

@@ -14,14 +14,24 @@ const useStates = defineStore("states", () => {
   function resetResult(): void {
     result.value.clear();
   }
+  function setInputGroupUUIDKeys(value: string[] | string) {
+    if (useIsArrayOfString(value)) {
+      inputGroupUUIDKeys.value = value as string[]
+    }
+    if (typeof value === 'string') {
+      inputGroupUUIDKeys.value.push(value)
+    }
+    
+  }
 
   return {
     sum,
+    inputGroupUUIDKeys,
     getSum,
     getResult,
     setSum,
     resetResult,
-    inputGroupUUIDKeys,
+    setInputGroupUUIDKeys,
   };
 });
 
