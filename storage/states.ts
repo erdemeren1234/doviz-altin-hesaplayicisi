@@ -7,6 +7,7 @@ const useStates = defineStore("states", () => {
 
   const getSum = computed(() => sum.value)
   const getResult = computed(() => result.value);
+  const getInputGroupUUIDKeys = computed(() => inputGroupUUIDKeys.value);
 
   function setSum(value: number): void {
     sum.value = value;
@@ -29,6 +30,7 @@ const useStates = defineStore("states", () => {
     inputGroupUUIDKeys,
     getSum,
     getResult,
+    getInputGroupUUIDKeys,
     setSum,
     resetResult,
     setInputGroupUUIDKeys,
