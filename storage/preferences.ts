@@ -1,4 +1,3 @@
-import { defineStore } from "pinia";
 import { marketSymbolsType } from "~~/types/types";
 
 const usePreferences = defineStore("preferences", () => {

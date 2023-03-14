@@ -2,7 +2,6 @@
 import { formDataType, formInputZodType, formInputType } from "~~/types/types";
 import usePreferences from "~~/storage/preferences";
 import useStates from "~~/storage/states";
-import { storeToRefs } from "pinia";
 
 const { useAutoAnimate } = await import("@formkit/auto-animate/vue");
 const states = storeToRefs(useStates());
@@ -26,6 +25,9 @@ async function submit(formData: formDataType) {
     }
   });
 
+  //if submitted with an empty input or unvalidated input, prevented submit behaviour
+  if (formInputs.length === 0) return;
+
   useHandleFormSubmit(formInputs);
   emit("onFormSubmit");
 }
@@ -41,11 +43,11 @@ onMounted(() => {
     type="form"
     @submit="submit"
     :submit-attrs="{
-      inputClass: 'button m-2 p-2 bg-green-700 border-1 border-black text-white',
+      inputClass: 'submitButton ',
     }"
   >
     <section ref="animate" class="grid grid-cols-2 max-[452px]:grid-cols-1">
-      <section v-for="UUIDKey in inputGroupUUIDKeys" :key="UUIDKey" class="p-2">
+      <section v-for="UUIDKey in inputGroupUUIDKeys" :key="UUIDKey" class="p-2 caret-orange-900">
         <FormKit type="group" :name="UUIDKey">
           <section name="inputs" class="p-2 border-2 border-[rgb(8,77,69)] rounded-lg">
             <FormKit

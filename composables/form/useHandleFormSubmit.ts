@@ -1,12 +1,10 @@
 import { fetchDataByKey } from "~~/services/marketsDataApiService";
 import { formInputType } from "~~/types/types";
 import useStates from "~~/storage/states";
-import { storeToRefs } from "pinia";
-
 
 export default async function (formInputs: formInputType[]) {
   const route = useRoute();
-  const states = useStates()
+  const states = useStates();
   const { setSum } = states;
   const { getResult, inputGroupUUIDKeys } = storeToRefs(states);
 
@@ -32,6 +30,13 @@ export default async function (formInputs: formInputType[]) {
 
   //clear the array
   inputGroupUUIDKeys.value.splice(0);
+  
+  //generally for mobile after submit
+  window.scroll({
+    top: 0, // could be negative value
+    left: 0,
+    behavior: "smooth",
+  });
 
   if (route.path !== "/result") {
     navigateTo("/result");

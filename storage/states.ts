@@ -1,4 +1,3 @@
-import { defineStore } from "pinia";
 
 const useStates = defineStore("states", () => {
   const sum = ref<number>(0);

@@ -3,35 +3,46 @@
 @tailwind utilities;
 
 @layer components {
+  .title {
+    @apply m-2 font-['Lobster'] text-2xl 2xl:text-5xl xl:text-4xl sm:text-3xl text-orange-800 transition-all hover:text-orange-900 hover:translate-x-4;
+  }
+
   .button {
-    @apply my-1 mr-2 p-1 lg:p-2 text-lg lg:text-lg ;
+    @apply my-1 mr-2 p-1 lg:p-2 text-lg lg:text-lg sm:text-base min-[280px]:text-sm;
   }
 
   .remove {
-    @apply button text-red-700 border-2 border-red-900;
+    @apply button bg-red-900 text-white border-2 hover:bg-transparent hover:text-red-700 hover:border-2 hover:border-red-900 transition;
   }
 
   .remove-disabled {
-    @apply button bg-gray-600 text-gray-200 border-2 border-gray-600 cursor-not-allowed	;
+    @apply button bg-gray-600 text-gray-200 border-2 border-gray-600 cursor-not-allowed;
   }
 
   .add {
-    @apply button border-2 border-black text-[#2e416c];
+    @apply button border-2 border-black bg-[#2e416c] text-white hover:bg-transparent hover:text-[#2e416c] transition;
+  }
+
+  .submitButton {
+    @apply button m-2 p-2 bg-green-900 border border-black text-white hover:text-green-700 hover:border hover:border-green-700 hover:bg-transparent transition;
   }
 
   .lucidaFont {
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   }
-  
+
   .label {
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
     color: rgb(6, 45, 70);
     font-weight: 800;
-    @apply text-[.925rem] 2xl:text-lg xl:text-lg lg:text-base sm:text-sm 
-    
+    @apply text-[.925rem] 2xl:text-lg xl:text-lg lg:text-base sm:text-sm;
   }
 
   .inputClass {
-    @apply w-40 md:w-48 h-6 md:h-8 px-2 rounded-md lucidaFont
+    @apply w-40 md:w-48 h-6 md:h-8 px-2 rounded-md lucidaFont;
+  }
+
+  .resultButton {
+    @apply button border border-neutral-900 transition duration-300 hover:bg-slate-900 hover:text-gray-100;
   }
 }

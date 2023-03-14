@@ -1,5 +1,3 @@
-import { storeToRefs } from "pinia";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -17,6 +15,7 @@ export default defineNuxtConfig({
           Lobster: true,
           Lato: [400, 700],
           "Tilt+Neon": true,
+          "Itim": true,
           Raleway: {
             wght: [100, 400, 800],
             ital: [100],
@@ -37,12 +36,10 @@ export default defineNuxtConfig({
   imports: {
     dirs: [
       // ... or scan all modules within given directory
-      'composables/**'
-    ]
+      "composables/**",
+    ],
   },
   pinia: {
-    autoImports: [
-      'defineStore', 'storeToRefs'
-    ],
+    autoImports: ["defineStore", "storeToRefs"],
   },
 });

@@ -1,10 +1,12 @@
 import { z } from "zod";
 
+const regex = /\d+(,\d+)?/g
+
 export const formDataZodType = z.record(z.object({ marketUnit: z.string(), quantity: z.string() }));
 export const formInputZodType = z.object({
   marketUnit: z.string(),
   //like 100 or 9,99
-  quantity: z.string().regex(new RegExp("\\d(,\\d+)?", "g")),
+  quantity: z.string().regex(regex),
 });
 
 export type formDataType = z.infer<typeof formDataZodType>;

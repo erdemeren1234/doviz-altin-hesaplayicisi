@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import { array } from 'zod';
+
 definePageMeta({
   middleware: [],
 });
+
 </script>
 
 <template>
   <section page-name="index">
     <Suspense>
-      <Form />
+      <section>
+        <h2 name="title" class="title">Inputs</h2>
+        <Form />
+      </section>
 
       <template #fallback>
         <Loading />
