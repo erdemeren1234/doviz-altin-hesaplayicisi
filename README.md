@@ -1,1 +1,1 @@
-Döviz ve emtia hesaplama sitesi.
+# Döviz ve emtia hesaplama sitesi. (Yapımı devam ediyor.)
