@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { formDataType, formInputZodType, formInputType } from "~~/types/types";
+import { formDataType, formInputType } from "~~/types/types";
 import usePreferences from "~~/storage/preferences";
 import useStates from "~~/storage/states";
 
@@ -18,9 +18,14 @@ const emit = defineEmits<{
  */
 async function submit(formData: formDataType) {
   const formInputs: formInputType[] = [];
+  const regex = /^\d+(,\d+)?$/g;
 
   Object.values(formData).map((input: formInputType) => {
-    if (formInputZodType.safeParse(input).success) {
+    if (
+      typeof input.marketUnit === "string" &&
+      typeof input.quantity === "string" &&
+      regex.test(input.quantity)
+    ) {
       formInputs.push(input);
     }
   });

@@ -23,7 +23,7 @@ const usePreferences = defineStore("preferences", () => {
   //FormKit -> select -> optgroup
   const formSelectValues = ref([
     {
-      label: "Yerli",
+      label: "National",
       options: [
         {
           value: "TRY",
@@ -32,7 +32,7 @@ const usePreferences = defineStore("preferences", () => {
       ],
     },
     {
-      label: "Döviz",
+      label: "Foreign",
       options: [
         {
           value: "USD",
@@ -49,7 +49,7 @@ const usePreferences = defineStore("preferences", () => {
       ],
     },
     {
-      label: "Emtia",
+      label: "Commodity",
       options: [
         {
           value: "GRA",
