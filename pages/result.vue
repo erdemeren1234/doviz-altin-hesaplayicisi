@@ -20,7 +20,7 @@ function onFormSubmit() {
 }
 
 function keepCalculating() {
-  displayForm.value = true
+  displayForm.value = true;
 }
 
 definePageMeta({
@@ -35,12 +35,14 @@ definePageMeta({
     >
       Results
     </h2>
-    <article class="grid grid-cols-2 place-items-center place-content-center font-['Itim'] text-[0.95rem] xl:text-2xl sm:text-[1.2rem]">
+    <article
+      class="grid grid-cols-2 place-items-center place-content-center font-['Itim'] text-[0.95rem] xl:text-2xl sm:text-[1.2rem]"
+    >
       <section v-for="unit in getResult.keys()" class="m-2 p-2 flex gap-2">
         <section name="unit-name" class="font-extrabold">{{ longMarketNames[unit] }} :</section>
         <section name="unit-quantity" class="text-[#486752]">
           {{ getResult.get(unit) }}
-          <span v-html="marketSymbols[unit] ?? 'Adet'"></span>
+          <span v-html="marketSymbols[unit] ?? 'Pieces'"></span>
         </section>
       </section>
     </article>
@@ -51,7 +53,7 @@ definePageMeta({
       <section
         class="relative mb-2 after:absolute after:content-[''] after:h-[0.1rem] after:w-2/3 after:bg-red-700 after:left-0 after:bottom-[-10%]"
       >
-        Toplam
+        Sum
       </section>
       <section class="place-self-end">
         {{ useTransformToTRY(getSum) }}
@@ -62,12 +64,8 @@ definePageMeta({
       name="button-container"
       class="w-3/4 max-[525px]:w-full mx-auto my-4 gap-4 grid grid-cols-2 font-['Josefin_Sans']"
     >
-      <button @click="keepCalculating" class="resultButton">
-        Hesaplamaya devam et
-      </button>
-      <button @click="resetResultAndNavigate()" class="resultButton">
-        Yeni hesaplama yap
-      </button>
+      <button @click="keepCalculating" class="resultButton">Keep calculating</button>
+      <button @click="resetResultAndNavigate()" class="resultButton">Make new calculation</button>
     </section>
 
     <Form v-if="displayForm" @onFormSubmit="onFormSubmit" />

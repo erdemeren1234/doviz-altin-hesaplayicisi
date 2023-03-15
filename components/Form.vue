@@ -53,7 +53,7 @@ onMounted(() => {
             <FormKit
               type="select"
               name="marketUnit"
-              label="Para veya emtia birimini seçiniz"
+              label="Select currency or commodity type"
               label-class="label"
               input-class="inputClass"
               outer-class="my-1"
