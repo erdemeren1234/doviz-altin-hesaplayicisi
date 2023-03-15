@@ -21,16 +21,16 @@
 
 <template>
   <Head>
-    <Title>Döviz ve Altın</Title>
+    <Title>Currency and Commodity Calculator</Title>
     <Meta name="description" content="Calculator for foreign currency and commodity units" />
     <Meta name="keywords" content="currency, usd, dollar, eur, euro, gold, silver" />
-    <Meta name="author" content="www.doviz.com" />
-    <Meta property="og:url" content="https://sharkcoder.com/html/Meta" />
+
+    <!-- <Meta property="og:url" content="https://sharkcoder.com/html/Meta" />
     <Meta property="og:title" content="Döviz ve Altın" />
     <Meta property="og:type" content="" />
     <Meta property="og:image" content="https://sharkcoder.com/public/img/content/tags_main.jpeg" />
     <Meta property="og:site_name" content="Shark Coder" />
-    <Meta property="og:description " content="Calculator for foreign currency and commodity units" />
+    <Meta property="og:description " content="Calculator for foreign currency and commodity units" /> -->
     <Meta property="og:locale" content="en_US" />
     <Meta property="og:locale:alternate" content="tr_TR" />
   </Head>
