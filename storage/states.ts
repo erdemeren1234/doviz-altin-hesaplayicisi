@@ -14,6 +14,9 @@ const useStates = defineStore("states", () => {
   function resetResult(): void {
     result.value.clear();
   }
+  function resetInputGroupUUIDKeys(): void {
+    inputGroupUUIDKeys.value.splice(0);
+  }
   function setInputGroupUUIDKeys(value: string[] | string) {
     if (useIsArrayOfString(value)) {
       inputGroupUUIDKeys.value = value as string[]
@@ -32,6 +35,7 @@ const useStates = defineStore("states", () => {
     getInputGroupUUIDKeys,
     setSum,
     resetResult,
+    resetInputGroupUUIDKeys,
     setInputGroupUUIDKeys,
   };
 });

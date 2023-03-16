@@ -17,21 +17,20 @@ const emit = defineEmits<{
  * Submit
  */
 async function submit(formData: formDataType) {
-  const formInputs: formInputType[] = [];
-  const regex = /^\d+(,\d+)?$/g;
+  //const regex = /^\d+(,\d+)?$/g;
+  console.log(formData);
 
-  Object.values(formData).map((input: formInputType) => {
-    if (
-      typeof input.marketUnit === "string" &&
-      typeof input.quantity === "string" &&
-      regex.test(input.quantity)
-    ) {
-      formInputs.push(input);
+  const formInputs: formInputType[] = Object.values(formData).filter((input: formInputType) => {
+    if (typeof input.marketUnit === "string" && typeof input.quantity === "string") {
+      input.quantity = input.quantity.trim();
+      return input;
     }
   });
 
   //if submitted with an empty input or unvalidated input, prevented submit behaviour
-  if (formInputs.length === 0) return;
+  if (formInputs.length === 0) {
+    throw createError("Please input valid quantity value.");
+  }
 
   useHandleFormSubmit(formInputs);
   emit("onFormSubmit");
@@ -48,7 +47,7 @@ onMounted(() => {
     type="form"
     @submit="submit"
     :submit-attrs="{
-      inputClass: 'submitButton ',
+      inputClass: 'submitButton disabled:remove-disabled',
     }"
   >
     <section ref="animate" class="grid grid-cols-2 max-[452px]:grid-cols-1">

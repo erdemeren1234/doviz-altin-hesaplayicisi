@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import useStates from './storage/states';
+const {resetInputGroupUUIDKeys} = useStates()
 // const content = ref<HTMLDivElement>();
 // const msg = ref("hidden");
 
@@ -17,6 +19,12 @@
 //     console.log("tıkladın ===>", e);
 //   });
 // });
+
+async function clearErrorAndNavigate(error) {
+  error.value = null;
+  resetInputGroupUUIDKeys()
+  await navigateTo("/");
+}
 </script>
 
 <template>
@@ -36,6 +44,17 @@
   </Head>
 
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtErrorBoundary>
+      <NuxtPage />
+
+      <template #error="{ error }">
+        <article class="m-4">
+          <section class="text-2xl max-sm:text-xl font-bold m-2 font-['Quicksand'] text-[#073058]">
+            {{ error }}
+          </section>
+          <button class="resultButton" @click="clearErrorAndNavigate(error)">Back to home</button>
+        </article>
+      </template>
+    </NuxtErrorBoundary>
   </NuxtLayout>
 </template>
