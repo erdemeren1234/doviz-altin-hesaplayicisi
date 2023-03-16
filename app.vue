@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import useStates from './storage/states';
-const {resetInputGroupUUIDKeys} = useStates()
+import useStates from "./storage/states";
+const { resetInputGroupUUIDKeys } = useStates();
 // const content = ref<HTMLDivElement>();
 // const msg = ref("hidden");
 
@@ -22,7 +22,7 @@ const {resetInputGroupUUIDKeys} = useStates()
 
 async function clearErrorAndNavigate(error) {
   error.value = null;
-  resetInputGroupUUIDKeys()
+  resetInputGroupUUIDKeys();
   await navigateTo("/");
 }
 </script>

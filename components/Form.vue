@@ -17,13 +17,14 @@ const emit = defineEmits<{
  * Submit
  */
 async function submit(formData: formDataType) {
-  //const regex = /^\d+(,\d+)?$/g;
-  console.log(formData);
+  const regex = /^\d+(,\d+)?$/;
 
   const formInputs: formInputType[] = Object.values(formData).filter((input: formInputType) => {
     if (typeof input.marketUnit === "string" && typeof input.quantity === "string") {
       input.quantity = input.quantity.trim();
-      return input;
+      if (regex.test(input.quantity)) {
+        return input;
+      }
     }
   });
 
@@ -100,5 +101,3 @@ onMounted(() => {
     </section>
   </FormKit>
 </template>
-
-<style></style>
