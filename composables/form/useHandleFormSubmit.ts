@@ -31,12 +31,12 @@ export default async function (formInputs: formInputType[]) {
   //clear the array
   inputGroupUUIDKeys.value.splice(0);
   
-  //generally for mobile after submit
-  window.scroll({
-    top: 0, // could be negative value
-    left: 0,
-    behavior: "smooth",
-  });
+  // //generally for mobile after submit
+  // window.scroll({
+  //   top: 0, // could be negative value
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
 
   if (route.path !== "/result") {
     navigateTo("/result");
