@@ -19,7 +19,7 @@ function handleCloseClick() {
 <template>
   <section
     component-name="header"
-    class="bg-header-bg grid grid-cols-2 place-content-between border-l-[8px] border-b-2 rounded-lg border-[#161F30] transition"
+    class="bg-header-bg grid grid-cols-[4fr_1fr] place-content-between border-l-[8px] border-b-2 rounded-lg border-[#161F30] transition"
   >
     <section
       @click="navigateTo('/')"
