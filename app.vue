@@ -1,24 +1,6 @@
 <script lang="ts" setup>
 import useStates from "./storage/states";
 const { resetInputGroupUUIDKeys } = useStates();
-// const content = ref<HTMLDivElement>();
-// const msg = ref("hidden");
-
-// const { x, y } = useMouse();
-
-// watchEffect(() => console.log(msg.value))
-
-// onMounted(() => {
-//   useEventListener(document, "visibilitychange", (e) => {
-//     console.log("document.visibilityState => ", document.visibilityState);
-//     if (document.visibilityState === "visible") {
-//       msg.value = "visible";
-//     }
-//   });
-//   useEventListener(content, "click", (e) => {
-//     console.log("tıkladın ===>", e);
-//   });
-// });
 
 function clearError(error) {
   error.value = null;
