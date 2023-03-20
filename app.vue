@@ -2,6 +2,8 @@
 import useStates from "./storage/states";
 const { resetInputGroupUUIDKeys } = useStates();
 
+const title = useRuntimeConfig().siteTitle;
+
 function clearError(error) {
   error.value = null;
   resetInputGroupUUIDKeys();
@@ -10,7 +12,7 @@ function clearError(error) {
 
 <template>
   <Head>
-    <Title>Currency and Commodity Calculator</Title>
+    <Title>{{ title }}</Title>
     <Meta name="description" content="Calculator for foreign currency and commodity units" />
     <Meta name="keywords" content="currency, usd, dollar, eur, euro, gold, silver" />
 
