@@ -20,10 +20,9 @@ const { resetInputGroupUUIDKeys } = useStates();
 //   });
 // });
 
-async function clearErrorAndNavigate(error) {
+function clearError(error) {
   error.value = null;
   resetInputGroupUUIDKeys();
-  await navigateTo("/");
 }
 </script>
 
@@ -52,7 +51,7 @@ async function clearErrorAndNavigate(error) {
           <section class="text-2xl max-sm:text-xl font-bold m-2 font-['Quicksand'] text-[#073058]">
             {{ error }}
           </section>
-          <button class="resultButton" @click="clearErrorAndNavigate(error)">Back to home</button>
+          <button class="resultButton" @click="clearError(error)">Go back</button>
         </article>
       </template>
     </NuxtErrorBoundary>
