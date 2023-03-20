@@ -45,4 +45,8 @@
   .resultButton {
     @apply button border border-neutral-900 transition duration-300 hover:bg-slate-900 hover:text-gray-100;
   }
+
+  .iconClass {
+    @apply mx-4 w-6 h-6 hover:cursor-pointer
+  }
 }
