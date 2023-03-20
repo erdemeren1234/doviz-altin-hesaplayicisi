@@ -19,7 +19,7 @@ const twClass = "xl:text-xl m-2 text-md";
     <h2 name="title" class="title">Current Markets Data</h2>
     <div
       :class="twClass"
-      class="w-max mx-2 my-2 flex justify-end gap-2 font-['Josefin_Sans'] font-bold text-xs underline decoration-indigo-500 transition duration-500 hover:underline-offset-4"
+      class="w-max mx-2 my-2 relative flex justify-end gap-2 font-['Josefin_Sans'] font-bold text-xs after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:scale-x-0 after:h-[2px] after:bg-indigo-500 after:transition after:duration-500 hover:after:scale-x-100 transition-all duration-500"
     >
       <span class="">Update Time:</span>
       <time :datetime="updateTime">{{ useFormatTime(updateTime, { dateStyle: "long" }) }}</time>
