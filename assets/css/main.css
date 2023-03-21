@@ -4,7 +4,7 @@
 
 @layer components {
   .title {
-    @apply m-2 font-['Lobster'] text-2xl 2xl:text-5xl xl:text-4xl sm:text-3xl text-orange-800 transition-all hover:text-orange-900 hover:translate-x-4;
+    @apply xl:m-2 sm:m-1 font-['Lobster'] text-2xl 2xl:text-5xl xl:text-4xl sm:text-3xl text-orange-800 transition-all hover:text-orange-900 hover:translate-x-1;
   }
 
   .button {
@@ -24,7 +24,7 @@
   }
 
   .submitButton {
-    @apply button m-2 p-2 bg-green-900 border border-black text-white hover:text-green-700 hover:border hover:border-green-700 hover:bg-transparent transition ;
+    @apply button m-2 max-sm:m-1 p-2 max-sm:p-[0.35rem] bg-green-900 border border-black text-white hover:text-green-700 hover:border hover:border-green-700 hover:bg-transparent transition ;
   }
 
   .lucidaFont {
@@ -35,7 +35,7 @@
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
     color: rgb(6, 45, 70);
     font-weight: 800;
-    @apply text-[.925rem] 2xl:text-lg xl:text-lg lg:text-base sm:text-sm;
+    @apply text-[0.8rem] leading-3 2xl:text-lg xl:text-lg lg:text-base sm:text-sm;
   }
 
   .inputClass {
