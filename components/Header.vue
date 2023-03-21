@@ -3,7 +3,10 @@ const emit = defineEmits<{
   (e: "openCurrentMarketsData"): void;
   (e: "closeCurrentMarketsData"): void;
 }>();
-const title = useRuntimeConfig().siteTitle;
+
+const config = useRuntimeConfig();
+const title = config.siteTitle
+
 const isOpened = ref(false);
 
 function handleOpenClick() {

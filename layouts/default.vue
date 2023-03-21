@@ -5,8 +5,6 @@ const { width } = useWindowSize();
 const isOpened = ref(false);
 
 const currentMarketsData = ref(null);
-console.log('old', currentMarketsData );
-
 
 function onOpen() {
   isOpened.value = true;

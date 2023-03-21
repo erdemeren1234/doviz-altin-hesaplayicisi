@@ -1,7 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   runtimeConfig:{
-    siteTitle: 'Currency and Commodity Calculator'
+    public : {
+      siteTitle: 'Currency and Commodity Calculator'
+
+    }
   },
   modules: [
     "@formkit/nuxt",

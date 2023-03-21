@@ -2,7 +2,8 @@
 import useStates from "./storage/states";
 const { resetInputGroupUUIDKeys } = useStates();
 
-const title = useRuntimeConfig().siteTitle;
+const config = useRuntimeConfig();
+const title = config.siteTitle
 
 function clearError(error) {
   error.value = null;
