@@ -4,14 +4,15 @@ import usePreferences from "~~/storage/preferences";
 
 const { marketSymbols, longMarketNames } = usePreferences();
 const states = useStates();
-const { resetResult } = states;
+const { resetResult, resetInputGroupUUIDKeys } = states;
 // in order to get states immediately, used storeToRefs() (it is autoloaded in nuxt.config.ts)
 const { getSum, getResult } = storeToRefs(states);
 
 const displayForm = ref<boolean>(false);
 
-function resetResultAndNavigate(path: string = "/"): void {
+function resetAndNavigate(path: string = "/"): void {
   resetResult();
+  resetInputGroupUUIDKeys()
   navigateTo(path);
 }
 
@@ -66,7 +67,7 @@ definePageMeta({
         class="w-3/4 max-[525px]:w-full mx-auto my-4 gap-4 grid grid-cols-2 font-['Josefin_Sans']"
       >
         <button @click="keepCalculating" class="resultButton">Keep calculating</button>
-        <button @click="resetResultAndNavigate()" class="resultButton">Make new calculation</button>
+        <button @click="resetAndNavigate()" class="resultButton">Make new calculation</button>
       </section>
 
       <Form v-if="displayForm" @onFormSubmit="onFormSubmit" />
