@@ -33,7 +33,7 @@ definePageMeta({
   <Suspense>
     <section page-name="result" class="grid grid-cols-1">
       <h2
-        class="title border-b-2 border-blue-800 bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-red-600 hover:text-blue-900"
+        class="title relative bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-red-600 hover:text-blue-900 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-11/12 after:scale-x-0 after:h-[2px] after:bg-slate-800 after:transition after:duration-500 hover:after:scale-x-100 transition-all duration-500"
       >
         Results
       </h2>
@@ -50,7 +50,7 @@ definePageMeta({
       </article>
 
       <section
-        class="my-4 mt-8 p-1 px-3 grid grid-cols-1 justify-end text-lg xl:text-2xl text-[#0F172A] font-['Tilt_Neon'] font-bold tracking-wider"
+        class="my-3 mt-4 p-1 px-2 grid grid-cols-1 justify-end text-lg xl:text-2xl text-[#0F172A] font-['Tilt_Neon'] font-bold tracking-wider"
       >
         <section
           class="relative mb-2 after:absolute after:content-[''] after:h-[0.1rem] after:w-2/3 after:bg-red-700 after:left-0 after:bottom-[-10%]"
@@ -64,7 +64,7 @@ definePageMeta({
       <!-- <pre>{{ getResult }}</pre> -->
       <section
         name="button-container"
-        class="w-3/4 max-[525px]:w-full mx-auto my-4 gap-4 grid grid-cols-2 font-['Josefin_Sans']"
+        class="w-3/4 max-[525px]:w-full mx-auto my-2 gap-4 grid grid-cols-2 font-['Josefin_Sans']"
       >
         <button @click="keepCalculating" class="resultButton">Keep calculating</button>
         <button @click="resetAndNavigate()" class="resultButton">Make new calculation</button>
