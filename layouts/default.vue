@@ -8,16 +8,15 @@ const currentMarketsData = ref(null);
 
 function onOpen() {
   isOpened.value = true;
-  
+
   watch(currentMarketsData, (newVal) => {
-    
     if (newVal !== null) {
       //x, y, top, right, bottom, left, width, height
       const { top, left } = useElementBounding(currentMarketsData);
       window.scroll({
         left: left.value,
         top: top.value,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   });

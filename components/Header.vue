@@ -5,7 +5,7 @@ const emit = defineEmits<{
 }>();
 
 const config = useRuntimeConfig();
-const title = config.siteTitle
+const title = config.siteTitle;
 
 const isOpened = ref(false);
 
@@ -33,6 +33,7 @@ function handleCloseClick() {
 
     <section class="flex justify-end items-center gap-4 lg:hidden">
       <svg
+        name="open-button"
         v-if="!isOpened"
         @click="handleOpenClick"
         xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +50,7 @@ function handleCloseClick() {
       </svg>
 
       <svg
+        name="close-button"
         v-if="isOpened"
         @click="handleCloseClick"
         xmlns="http://www.w3.org/2000/svg"
